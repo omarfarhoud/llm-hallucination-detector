@@ -1,0 +1,20 @@
+#!/bin/bash
+
+commit_msg=$(cat "$1")
+pattern="^(feat|fix|docs|test|refactor|chore): .{1,50}$"
+
+if ! echo "$commit_msg" | grep -qE "$pattern"; then
+    echo ""
+    echo "❌ Invalid commit format"
+    echo ""
+    echo "Use: <type>: <description>"
+    echo ""
+    echo "Examples:"
+    echo "  feat: add LLM judge signal"
+    echo "  fix: handle empty context"
+    echo "  docs: update setup guide"
+    echo ""
+    echo "Valid types: feat, fix, docs, test, refactor, chore"
+    echo ""
+    exit 1
+fi

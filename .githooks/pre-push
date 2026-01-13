@@ -1,0 +1,29 @@
+#!/bin/bash
+
+current_branch=$(git symbolic-ref --short HEAD)
+
+# Skip main branch
+if [ "$current_branch" = "main" ]; then
+    exit 0
+fi
+
+# Check branch name format
+pattern="^(feature|fix|docs|test|refactor)/.+$"
+
+if ! echo "$current_branch" | grep -qE "$pattern"; then
+    echo ""
+    echo "❌ Invalid branch name: $current_branch"
+    echo ""
+    echo "Format: <type>/<description>"
+    echo ""
+    echo "Valid types: feature, fix, docs, test, refactor"
+    echo ""
+    echo "Examples:"
+    echo "  feature/similarity-check"
+    echo "  fix/judge-prompt"
+    echo "  docs/readme-update"
+    echo ""
+    exit 1
+fi
+
+echo "✅ Branch name valid: $current_branch"
