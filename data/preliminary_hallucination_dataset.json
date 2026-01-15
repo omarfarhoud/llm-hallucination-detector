@@ -1,0 +1,1042 @@
+[
+  {
+    "question_id": 1,
+    "question": "Does metformin reduce hepatic glucose production in type 2 diabetes?",
+    "context": [
+      { "doc_id": "doc1", "text": "Metformin lowers blood glucose primarily by reducing hepatic glucose production." },
+      { "doc_id": "doc2", "text": "Metformin improves insulin sensitivity in patients with type 2 diabetes." },
+      { "doc_id": "doc3", "text": "Gastrointestinal side effects are commonly reported with metformin use." }
+    ],
+    "answer": "Yes. Metformin reduces hepatic glucose production and improves insulin sensitivity [doc1][doc2].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 2,
+    "question": "Is smoking a major risk factor for lung cancer?",
+    "context": [
+      { "doc_id": "doc1", "text": "Smoking is the leading cause of lung cancer worldwide." },
+      { "doc_id": "doc2", "text": "Exposure to tobacco smoke significantly increases lung cancer risk." }
+    ],
+    "answer": "Yes. Smoking is a major risk factor for lung cancer [doc1][doc2].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 3,
+    "question": "Do statins inhibit HMG-CoA reductase?",
+    "context": [
+      { "doc_id": "doc1", "text": "Statins inhibit HMG-CoA reductase, reducing cholesterol synthesis." },
+      { "doc_id": "doc2", "text": "Lowering LDL cholesterol reduces cardiovascular disease risk." }
+    ],
+    "answer": "Yes. Statins inhibit HMG-CoA reductase [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 4,
+    "question": "Does insulin lower blood glucose levels?",
+    "context": [
+      { "doc_id": "doc1", "text": "Insulin lowers blood glucose by facilitating glucose uptake into cells." },
+      { "doc_id": "doc2", "text": "Insulin deficiency leads to hyperglycemia." }
+    ],
+    "answer": "Yes. Insulin lowers blood glucose levels [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 5,
+    "question": "Is hypertension associated with increased stroke risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Hypertension is a major modifiable risk factor for stroke." },
+      { "doc_id": "doc2", "text": "Blood pressure control reduces stroke incidence." }
+    ],
+    "answer": "Yes. Hypertension is associated with increased stroke risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+
+  {
+    "question_id": 6,
+    "question": "Does obesity increase the risk of cardiovascular disease?",
+    "context": [
+      { "doc_id": "doc1", "text": "Obesity is associated with increased cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Excess body fat contributes to metabolic abnormalities." }
+    ],
+    "answer": "Yes. Obesity increases cardiovascular disease risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 7,
+    "question": "Is aspirin effective in reducing cardiovascular events?",
+    "context": [
+      { "doc_id": "doc1", "text": "Aspirin inhibits platelet aggregation." },
+      { "doc_id": "doc2", "text": "Aspirin reduces cardiovascular events in high-risk patients." }
+    ],
+    "answer": "Yes. Aspirin reduces cardiovascular events by inhibiting platelet aggregation [doc1][doc2].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 8,
+    "question": "Do ACE inhibitors lower blood pressure?",
+    "context": [
+      { "doc_id": "doc1", "text": "ACE inhibitors lower blood pressure by inhibiting the renin-angiotensin system." },
+      { "doc_id": "doc2", "text": "They are commonly prescribed for hypertension." }
+    ],
+    "answer": "Yes. ACE inhibitors lower blood pressure [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 9,
+    "question": "Is chronic kidney disease characterized by loss of kidney function?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic kidney disease involves progressive loss of kidney function." },
+      { "doc_id": "doc2", "text": "Advanced disease may require dialysis or transplantation." }
+    ],
+    "answer": "Yes. Chronic kidney disease is characterized by loss of kidney function [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 10,
+    "question": "Is vaccination effective in preventing infectious diseases?",
+    "context": [
+      { "doc_id": "doc1", "text": "Vaccination is an effective strategy to prevent infectious diseases." },
+      { "doc_id": "doc2", "text": "High vaccination coverage reduces disease transmission." }
+    ],
+    "answer": "Yes. Vaccination is effective in preventing infectious diseases [doc1][doc2].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+
+  {
+    "question_id": 11,
+    "question": "Does vitamin D supplementation improve bone health?",
+    "context": [
+      { "doc_id": "doc1", "text": "Vitamin D plays a role in calcium absorption and bone metabolism." },
+      { "doc_id": "doc2", "text": "Deficiency in vitamin D is linked to poor bone health." }
+    ],
+    "answer": "Yes. Vitamin D supplementation supports bone health [doc1][doc2].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 12,
+    "question": "Is chronic inflammation linked to increased cancer risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic inflammation has been linked to increased cancer risk." },
+      { "doc_id": "doc2", "text": "Inflammatory pathways can promote tumor development." }
+    ],
+    "answer": "Yes. Chronic inflammation is linked to increased cancer risk [doc1][doc2].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 13,
+    "question": "Do antibiotics treat bacterial infections?",
+    "context": [
+      { "doc_id": "doc1", "text": "Antibiotics are used to treat bacterial infections." },
+      { "doc_id": "doc2", "text": "They are ineffective against viral infections." }
+    ],
+    "answer": "Yes. Antibiotics treat bacterial infections [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 14,
+    "question": "Does elevated LDL cholesterol increase cardiovascular risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Elevated LDL cholesterol increases cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Lowering LDL cholesterol reduces adverse cardiovascular outcomes." }
+    ],
+    "answer": "Yes. Elevated LDL cholesterol increases cardiovascular risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 15,
+    "question": "Does smoking cessation reduce cardiovascular disease risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Smoking cessation reduces cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Former smokers have lower risk compared to current smokers." }
+    ],
+    "answer": "Yes. Smoking cessation reduces cardiovascular disease risk [doc1][doc2].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+
+  {
+    "question_id": 16,
+    "question": "Does regular physical activity improve insulin sensitivity?",
+    "context": [
+      { "doc_id": "doc1", "text": "Regular physical activity improves insulin sensitivity." },
+      { "doc_id": "doc2", "text": "Exercise reduces the risk of type 2 diabetes." }
+    ],
+    "answer": "Yes. Physical activity improves insulin sensitivity [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 17,
+    "question": "Is diabetes a risk factor for cardiovascular disease?",
+    "context": [
+      { "doc_id": "doc1", "text": "Diabetes mellitus is a significant risk factor for cardiovascular disease." },
+      { "doc_id": "doc2", "text": "Poor glycemic control increases vascular complications." }
+    ],
+    "answer": "Yes. Diabetes increases cardiovascular disease risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 18,
+    "question": "Does obesity increase the risk of type 2 diabetes?",
+    "context": [
+      { "doc_id": "doc1", "text": "Obesity is a major risk factor for type 2 diabetes." },
+      { "doc_id": "doc2", "text": "Excess adiposity contributes to insulin resistance." }
+    ],
+    "answer": "Yes. Obesity increases the risk of type 2 diabetes [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 19,
+    "question": "Does high salt intake contribute to hypertension?",
+    "context": [
+      { "doc_id": "doc1", "text": "High dietary salt intake is associated with increased blood pressure." },
+      { "doc_id": "doc2", "text": "Reducing salt intake lowers blood pressure." }
+    ],
+    "answer": "Yes. High salt intake contributes to hypertension [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 20,
+    "question": "Does regular exercise improve cardiovascular health?",
+    "context": [
+      { "doc_id": "doc1", "text": "Regular exercise improves cardiovascular health." },
+      { "doc_id": "doc2", "text": "Physical activity reduces cardiovascular disease risk." }
+    ],
+    "answer": "Yes. Regular exercise improves cardiovascular health [doc1][doc2].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+
+  {
+    "question_id": 21,
+    "question": "Does aspirin inhibit platelet aggregation?",
+    "context": [
+      { "doc_id": "doc1", "text": "Aspirin inhibits platelet aggregation by blocking cyclooxygenase." },
+      { "doc_id": "doc2", "text": "This effect reduces thrombus formation." }
+    ],
+    "answer": "Yes. Aspirin inhibits platelet aggregation [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 22,
+    "question": "Do beta-blockers reduce heart rate?",
+    "context": [
+      { "doc_id": "doc1", "text": "Beta-blockers reduce heart rate by blocking beta-adrenergic receptors." },
+      { "doc_id": "doc2", "text": "They are commonly used in cardiovascular disease." }
+    ],
+    "answer": "Yes. Beta-blockers reduce heart rate [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 23,
+    "question": "Does high blood pressure damage blood vessels?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic high blood pressure damages blood vessels." },
+      { "doc_id": "doc2", "text": "Vascular damage increases cardiovascular risk." }
+    ],
+    "answer": "Yes. High blood pressure damages blood vessels [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 24,
+    "question": "Is obesity linked to metabolic syndrome?",
+    "context": [
+      { "doc_id": "doc1", "text": "Obesity is strongly linked to metabolic syndrome." },
+      { "doc_id": "doc2", "text": "Metabolic syndrome increases cardiovascular risk." }
+    ],
+    "answer": "Yes. Obesity is linked to metabolic syndrome [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 25,
+    "question": "Does insulin resistance precede type 2 diabetes?",
+    "context": [
+      { "doc_id": "doc1", "text": "Insulin resistance often precedes the development of type 2 diabetes." },
+      { "doc_id": "doc2", "text": "Early intervention may delay disease onset." }
+    ],
+    "answer": "Yes. Insulin resistance precedes type 2 diabetes [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+
+  {
+    "question_id": 26,
+    "question": "Does smoking increase cardiovascular disease risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Smoking increases cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Smoking promotes atherosclerosis." }
+    ],
+    "answer": "Yes. Smoking increases cardiovascular disease risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 27,
+    "question": "Does chronic hyperglycemia damage blood vessels?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic hyperglycemia damages blood vessels over time." },
+      { "doc_id": "doc2", "text": "Vascular damage leads to diabetic complications." }
+    ],
+    "answer": "Yes. Chronic hyperglycemia damages blood vessels [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 28,
+    "question": "Is inflammation involved in atherosclerosis?",
+    "context": [
+      { "doc_id": "doc1", "text": "Inflammation plays a key role in atherosclerosis development." },
+      { "doc_id": "doc2", "text": "Inflammatory markers are elevated in atherosclerotic disease." }
+    ],
+    "answer": "Yes. Inflammation is involved in atherosclerosis [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 29,
+    "question": "Does obesity increase all-cause mortality?",
+    "context": [
+      { "doc_id": "doc1", "text": "Obesity is associated with increased all-cause mortality." },
+      { "doc_id": "doc2", "text": "Mortality risk rises with increasing body mass index." }
+    ],
+    "answer": "Yes. Obesity increases all-cause mortality [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 30,
+    "question": "Does poor diet contribute to cardiovascular disease?",
+    "context": [
+      { "doc_id": "doc1", "text": "Poor dietary habits contribute to cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Dietary improvements reduce cardiovascular events." }
+    ],
+    "answer": "Yes. Poor diet contributes to cardiovascular disease [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+
+  {
+    "question_id": 31,
+    "question": "Does chronic stress negatively affect cardiovascular health?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic stress negatively affects cardiovascular health." },
+      { "doc_id": "doc2", "text": "Stress-related hormones increase blood pressure." }
+    ],
+    "answer": "Yes. Chronic stress negatively affects cardiovascular health [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 32,
+    "question": "Does elevated triglyceride level increase cardiovascular risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Elevated triglyceride levels increase cardiovascular risk." },
+      { "doc_id": "doc2", "text": "Triglycerides are a component of dyslipidemia." }
+    ],
+    "answer": "Yes. Elevated triglyceride levels increase cardiovascular risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 33,
+    "question": "Is insulin therapy required in type 1 diabetes?",
+    "context": [
+      { "doc_id": "doc1", "text": "Type 1 diabetes requires lifelong insulin therapy." },
+      { "doc_id": "doc2", "text": "Insulin deficiency is characteristic of type 1 diabetes." }
+    ],
+    "answer": "Yes. Insulin therapy is required in type 1 diabetes [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 34,
+    "question": "Does physical inactivity increase cardiovascular risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Physical inactivity increases cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Sedentary lifestyle is linked to poor cardiovascular outcomes." }
+    ],
+    "answer": "Yes. Physical inactivity increases cardiovascular risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 35,
+    "question": "Does high BMI increase the risk of metabolic disease?",
+    "context": [
+      { "doc_id": "doc1", "text": "High body mass index is associated with metabolic disease." },
+      { "doc_id": "doc2", "text": "Metabolic disease includes insulin resistance and dyslipidemia." }
+    ],
+    "answer": "Yes. High BMI increases metabolic disease risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+
+  {
+    "question_id": 36,
+    "question": "Does long-term smoking increase mortality risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Long-term smoking increases all-cause mortality." },
+      { "doc_id": "doc2", "text": "Smoking-related diseases contribute to premature death." }
+    ],
+    "answer": "Yes. Long-term smoking increases mortality risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 37,
+    "question": "Does high cholesterol contribute to atherosclerosis?",
+    "context": [
+      { "doc_id": "doc1", "text": "High cholesterol contributes to atherosclerosis development." },
+      { "doc_id": "doc2", "text": "Cholesterol accumulates in arterial plaques." }
+    ],
+    "answer": "Yes. High cholesterol contributes to atherosclerosis [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 38,
+    "question": "Does diabetes increase the risk of kidney disease?",
+    "context": [
+      { "doc_id": "doc1", "text": "Diabetes is a leading cause of chronic kidney disease." },
+      { "doc_id": "doc2", "text": "Diabetic nephropathy results from prolonged hyperglycemia." }
+    ],
+    "answer": "Yes. Diabetes increases the risk of kidney disease [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 39,
+    "question": "Does elevated blood pressure increase cardiovascular risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Elevated blood pressure increases cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Hypertension damages vascular structures." }
+    ],
+    "answer": "Yes. Elevated blood pressure increases cardiovascular risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 40,
+    "question": "Does weight loss improve metabolic health?",
+    "context": [
+      { "doc_id": "doc1", "text": "Weight loss improves metabolic health and insulin sensitivity." },
+      { "doc_id": "doc2", "text": "Reduced adiposity lowers metabolic risk." }
+    ],
+    "answer": "Yes. Weight loss improves metabolic health [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+
+  {
+    "question_id": 41,
+    "question": "Does high fasting glucose predict diabetes development?",
+    "context": [
+      { "doc_id": "doc1", "text": "Elevated fasting glucose predicts progression to diabetes." },
+      { "doc_id": "doc2", "text": "Impaired glucose regulation precedes diabetes." }
+    ],
+    "answer": "Yes. High fasting glucose predicts diabetes development [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 42,
+    "question": "Does dyslipidemia increase cardiovascular disease risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Dyslipidemia increases cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Abnormal lipid levels contribute to atherosclerosis." }
+    ],
+    "answer": "Yes. Dyslipidemia increases cardiovascular disease risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 43,
+    "question": "Does insulin deficiency cause hyperglycemia?",
+    "context": [
+      { "doc_id": "doc1", "text": "Insulin deficiency causes hyperglycemia." },
+      { "doc_id": "doc2", "text": "Insulin is essential for glucose homeostasis." }
+    ],
+    "answer": "Yes. Insulin deficiency causes hyperglycemia [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 44,
+    "question": "Does chronic inflammation contribute to cardiovascular disease?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic inflammation contributes to cardiovascular disease." },
+      { "doc_id": "doc2", "text": "Inflammatory markers are elevated in cardiovascular conditions." }
+    ],
+    "answer": "Yes. Chronic inflammation contributes to cardiovascular disease [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 45,
+    "question": "Does obesity increase the risk of hypertension?",
+    "context": [
+      { "doc_id": "doc1", "text": "Obesity increases the risk of hypertension." },
+      { "doc_id": "doc2", "text": "Weight gain raises blood pressure." }
+    ],
+    "answer": "Yes. Obesity increases the risk of hypertension [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+
+  {
+    "question_id": 46,
+    "question": "Does reduced physical activity increase obesity risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Reduced physical activity increases obesity risk." },
+      { "doc_id": "doc2", "text": "Sedentary behavior promotes weight gain." }
+    ],
+    "answer": "Yes. Reduced physical activity increases obesity risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 47,
+    "question": "Does high sugar intake contribute to metabolic disease?",
+    "context": [
+      { "doc_id": "doc1", "text": "High sugar intake contributes to metabolic disease." },
+      { "doc_id": "doc2", "text": "Excess sugar intake increases insulin resistance." }
+    ],
+    "answer": "Yes. High sugar intake contributes to metabolic disease [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 48,
+    "question": "Does chronic alcohol consumption damage the liver?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic alcohol consumption damages the liver." },
+      { "doc_id": "doc2", "text": "Alcoholic liver disease results from prolonged alcohol exposure." }
+    ],
+    "answer": "Yes. Chronic alcohol consumption damages the liver [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 49,
+    "question": "Does viral hepatitis cause liver inflammation?",
+    "context": [
+      { "doc_id": "doc1", "text": "Viral hepatitis causes liver inflammation." },
+      { "doc_id": "doc2", "text": "Hepatitis viruses infect liver cells." }
+    ],
+    "answer": "Yes. Viral hepatitis causes liver inflammation [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+  {
+    "question_id": 50,
+    "question": "Does chronic kidney disease increase cardiovascular risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic kidney disease increases cardiovascular risk." },
+      { "doc_id": "doc2", "text": "Patients with kidney disease have higher cardiovascular mortality." }
+    ],
+    "answer": "Yes. Chronic kidney disease increases cardiovascular risk [doc1].",
+    "label": "valid",
+    "hallucination_type": "none"
+  },
+
+  {
+    "question_id": 51,
+    "question": "Does vitamin D supplementation reduce fracture risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Vitamin D plays a role in calcium absorption and bone health." },
+      { "doc_id": "doc2", "text": "Adequate vitamin D levels are important for skeletal integrity." }
+    ],
+    "answer": "Vitamin D supplementation reduces fracture risk by 80% in adults [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "fabricated_stat"
+  },
+
+  {
+    "question_id": 52,
+    "question": "Does aspirin reduce cardiovascular mortality?",
+    "context": [
+      { "doc_id": "doc1", "text": "Aspirin reduces cardiovascular events in high-risk patients." },
+      { "doc_id": "doc2", "text": "Aspirin inhibits platelet aggregation." }
+    ],
+    "answer": "Aspirin reduces cardiovascular mortality by 65% [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "fabricated_stat"
+  },
+
+  {
+    "question_id": 53,
+    "question": "Does smoking increase lung cancer mortality?",
+    "context": [
+      { "doc_id": "doc1", "text": "Smoking increases lung cancer risk." },
+      { "doc_id": "doc2", "text": "Lung cancer has high mortality rates." }
+    ],
+    "answer": "Smoking increases lung cancer mortality by 90% [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "fabricated_stat"
+  },
+
+  {
+    "question_id": 54,
+    "question": "Does obesity increase cardiovascular mortality?",
+    "context": [
+      { "doc_id": "doc1", "text": "Obesity increases cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Cardiovascular disease is a leading cause of death." }
+    ],
+    "answer": "Obesity increases cardiovascular mortality by 70% [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "fabricated_stat"
+  },
+
+  {
+    "question_id": 55,
+    "question": "Does physical activity reduce diabetes incidence?",
+    "context": [
+      { "doc_id": "doc1", "text": "Physical activity reduces the risk of type 2 diabetes." },
+      { "doc_id": "doc2", "text": "Exercise improves insulin sensitivity." }
+    ],
+    "answer": "Physical activity reduces diabetes incidence by 85% [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "fabricated_stat"
+  },
+
+  {
+    "question_id": 56,
+    "question": "Does weight loss reduce cardiovascular risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Weight loss improves cardiovascular risk factors." },
+      { "doc_id": "doc2", "text": "Improved lipid profiles reduce cardiovascular risk." }
+    ],
+    "answer": "Weight loss reduces cardiovascular risk by 75% [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "fabricated_stat"
+  },
+
+  {
+    "question_id": 57,
+    "question": "Does statin therapy reduce mortality?",
+    "context": [
+      { "doc_id": "doc1", "text": "Statin therapy reduces cardiovascular events." },
+      { "doc_id": "doc2", "text": "Lower cholesterol levels improve outcomes." }
+    ],
+    "answer": "Statin therapy reduces mortality by 60% [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "fabricated_stat"
+  },
+
+  {
+    "question_id": 58,
+    "question": "Does smoking cessation reduce cancer risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Smoking cessation reduces cancer risk over time." },
+      { "doc_id": "doc2", "text": "Cancer risk decreases after quitting smoking." }
+    ],
+    "answer": "Smoking cessation reduces cancer risk by 95% within one year [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "fabricated_stat"
+  },
+
+  {
+    "question_id": 59,
+    "question": "Does hypertension treatment reduce stroke incidence?",
+    "context": [
+      { "doc_id": "doc1", "text": "Treating hypertension reduces stroke risk." },
+      { "doc_id": "doc2", "text": "Blood pressure control improves outcomes." }
+    ],
+    "answer": "Hypertension treatment reduces stroke incidence by 88% [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "fabricated_stat"
+  },
+
+  {
+    "question_id": 60,
+    "question": "Does dietary intervention reduce obesity prevalence?",
+    "context": [
+      { "doc_id": "doc1", "text": "Dietary interventions can reduce obesity prevalence." },
+      { "doc_id": "doc2", "text": "Lifestyle changes improve weight management." }
+    ],
+    "answer": "Dietary intervention reduces obesity prevalence by 92% [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "fabricated_stat"
+  },
+
+  {
+    "question_id": 61,
+    "question": "Which drug inhibits HMG-CoA reductase?",
+    "context": [
+      { "doc_id": "doc1", "text": "Statins inhibit HMG-CoA reductase." },
+      { "doc_id": "doc2", "text": "This inhibition lowers cholesterol synthesis." }
+    ],
+    "answer": "Metformin inhibits HMG-CoA reductase [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "wrong_entity"
+  },
+
+  {
+    "question_id": 62,
+    "question": "Which hormone lowers blood glucose?",
+    "context": [
+      { "doc_id": "doc1", "text": "Insulin lowers blood glucose levels." },
+      { "doc_id": "doc2", "text": "Glucagon raises blood glucose levels." }
+    ],
+    "answer": "Glucagon lowers blood glucose levels [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "wrong_entity"
+  },
+
+  {
+    "question_id": 63,
+    "question": "Which condition increases cardiovascular disease risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Diabetes increases cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Hypertension increases cardiovascular disease risk." }
+    ],
+    "answer": "Asthma increases cardiovascular disease risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "wrong_entity"
+  },
+
+  {
+    "question_id": 64,
+    "question": "Which nutrient supports bone health?",
+    "context": [
+      { "doc_id": "doc1", "text": "Vitamin D supports bone health." },
+      { "doc_id": "doc2", "text": "Calcium is important for bone structure." }
+    ],
+    "answer": "Iron supports bone health [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "wrong_entity"
+  },
+
+  {
+    "question_id": 65,
+    "question": "Which organ is damaged in chronic kidney disease?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic kidney disease damages the kidneys." },
+      { "doc_id": "doc2", "text": "Kidney damage impairs filtration." }
+    ],
+    "answer": "The liver is damaged in chronic kidney disease [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "wrong_entity"
+  },
+
+  {
+    "question_id": 66,
+    "question": "Which process lowers blood glucose?",
+    "context": [
+      { "doc_id": "doc1", "text": "Insulin lowers blood glucose by increasing glucose uptake." },
+      { "doc_id": "doc2", "text": "Glucose uptake reduces circulating glucose." }
+    ],
+    "answer": "Gluconeogenesis lowers blood glucose levels [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "wrong_entity"
+  },
+
+  {
+    "question_id": 67,
+    "question": "Which condition increases cancer risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic inflammation increases cancer risk." },
+      { "doc_id": "doc2", "text": "Inflammatory pathways promote tumor growth." }
+    ],
+    "answer": "Acute dehydration increases cancer risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "wrong_entity"
+  },
+
+  {
+    "question_id": 68,
+    "question": "Which therapy reduces cholesterol levels?",
+    "context": [
+      { "doc_id": "doc1", "text": "Statins reduce cholesterol levels." },
+      { "doc_id": "doc2", "text": "Lower cholesterol reduces cardiovascular risk." }
+    ],
+    "answer": "Insulin therapy reduces cholesterol levels [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "wrong_entity"
+  },
+
+  {
+    "question_id": 69,
+    "question": "Which behavior increases cardiovascular disease risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Smoking increases cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Sedentary lifestyle increases cardiovascular risk." }
+    ],
+    "answer": "Regular exercise increases cardiovascular disease risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "wrong_entity"
+  },
+
+  {
+    "question_id": 70,
+    "question": "Which factor increases obesity risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "High-calorie diet increases obesity risk." },
+      { "doc_id": "doc2", "text": "Physical inactivity contributes to obesity." }
+    ],
+    "answer": "Low-calorie diet increases obesity risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "wrong_entity"
+  },
+
+  {
+    "question_id": 71,
+    "question": "Does insulin regulate blood glucose?",
+    "context": [
+      { "doc_id": "doc1", "text": "Insulin lowers blood glucose by facilitating glucose uptake." },
+      { "doc_id": "doc2", "text": "Insulin is essential for glucose homeostasis." }
+    ],
+    "answer": "Yes. Insulin lowers blood glucose and increases red blood cell production [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "added_fact"
+  },
+
+  {
+    "question_id": 72,
+    "question": "Does aspirin reduce cardiovascular risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Aspirin reduces cardiovascular risk by inhibiting platelet aggregation." },
+      { "doc_id": "doc2", "text": "Platelet inhibition reduces thrombus formation." }
+    ],
+    "answer": "Yes. Aspirin reduces cardiovascular risk and improves lung function [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "added_fact"
+  },
+
+  {
+    "question_id": 73,
+    "question": "Does physical activity improve metabolic health?",
+    "context": [
+      { "doc_id": "doc1", "text": "Physical activity improves metabolic health." },
+      { "doc_id": "doc2", "text": "Exercise enhances insulin sensitivity." }
+    ],
+    "answer": "Yes. Physical activity improves metabolic health and increases bone density in all individuals [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "added_fact"
+  },
+
+  {
+    "question_id": 74,
+    "question": "Does statin therapy reduce cardiovascular events?",
+    "context": [
+      { "doc_id": "doc1", "text": "Statin therapy reduces cardiovascular events." },
+      { "doc_id": "doc2", "text": "Lower cholesterol levels improve outcomes." }
+    ],
+    "answer": "Yes. Statin therapy reduces cardiovascular events and prevents cancer [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "added_fact"
+  },
+
+  {
+    "question_id": 75,
+    "question": "Does smoking cessation improve health outcomes?",
+    "context": [
+      { "doc_id": "doc1", "text": "Smoking cessation improves health outcomes." },
+      { "doc_id": "doc2", "text": "Quitting smoking reduces disease risk." }
+    ],
+    "answer": "Yes. Smoking cessation improves health outcomes and reverses genetic mutations [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "added_fact"
+  },
+
+  {
+    "question_id": 76,
+    "question": "Does obesity increase cardiovascular risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Obesity increases cardiovascular risk." },
+      { "doc_id": "doc2", "text": "Excess adiposity contributes to metabolic abnormalities." }
+    ],
+    "answer": "No. Obesity does not increase cardiovascular risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "negation"
+  },
+
+  {
+    "question_id": 77,
+    "question": "Is smoking linked to lung cancer?",
+    "context": [
+      { "doc_id": "doc1", "text": "Smoking is strongly linked to lung cancer." },
+      { "doc_id": "doc2", "text": "Tobacco smoke contains carcinogens." }
+    ],
+    "answer": "No. Smoking is not linked to lung cancer [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "negation"
+  },
+
+  {
+    "question_id": 78,
+    "question": "Does hypertension increase stroke risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Hypertension increases stroke risk." },
+      { "doc_id": "doc2", "text": "Blood pressure control reduces stroke incidence." }
+    ],
+    "answer": "No. Hypertension does not increase stroke risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "negation"
+  },
+
+  {
+    "question_id": 79,
+    "question": "Does diabetes increase cardiovascular disease risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Diabetes increases cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Poor glycemic control worsens outcomes." }
+    ],
+    "answer": "No. Diabetes does not increase cardiovascular disease risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "negation"
+  },
+
+  {
+    "question_id": 80,
+    "question": "Does chronic inflammation increase cancer risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic inflammation increases cancer risk." },
+      { "doc_id": "doc2", "text": "Inflammatory pathways promote tumorigenesis." }
+    ],
+    "answer": "No. Chronic inflammation does not increase cancer risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "negation"
+  },
+
+  {
+    "question_id": 81,
+    "question": "Does high cholesterol increase cardiovascular disease risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "High cholesterol increases cardiovascular disease risk." },
+      { "doc_id": "doc2", "text": "Cholesterol accumulates in arterial plaques." }
+    ],
+    "answer": "No. High cholesterol does not increase cardiovascular disease risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "negation"
+  },
+
+  {
+    "question_id": 82,
+    "question": "Does smoking increase mortality risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Smoking increases all-cause mortality." },
+      { "doc_id": "doc2", "text": "Smoking-related diseases cause premature death." }
+    ],
+    "answer": "No. Smoking does not increase mortality risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "negation"
+  },
+
+  {
+    "question_id": 83,
+    "question": "Does physical inactivity increase obesity risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Physical inactivity increases obesity risk." },
+      { "doc_id": "doc2", "text": "Sedentary behavior contributes to weight gain." }
+    ],
+    "answer": "No. Physical inactivity does not increase obesity risk [doc1].",
+    "label": "hallucinated",
+    "hallucination_type": "negation"
+  },
+
+  {
+    "question_id": 84,
+    "question": "Does aspirin reduce cardiovascular events?",
+    "context": [
+      { "doc_id": "doc1", "text": "Aspirin reduces cardiovascular events." },
+      { "doc_id": "doc2", "text": "Platelet inhibition reduces thrombus formation." }
+    ],
+    "answer": "Aspirin reduces cardiovascular events [doc3].",
+    "label": "hallucinated",
+    "hallucination_type": "fake_citation"
+  },
+
+  {
+    "question_id": 85,
+    "question": "Does chronic kidney disease increase cardiovascular risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Chronic kidney disease increases cardiovascular risk." },
+      { "doc_id": "doc2", "text": "Kidney disease is associated with higher mortality." }
+    ],
+    "answer": "Chronic kidney disease increases cardiovascular risk [doc4].",
+    "label": "hallucinated",
+    "hallucination_type": "fake_citation"
+  },
+
+  {
+    "question_id": 86,
+    "question": "Does vaccination prevent infectious diseases?",
+    "context": [
+      { "doc_id": "doc1", "text": "Vaccination prevents infectious diseases." },
+      { "doc_id": "doc2", "text": "High vaccination coverage reduces transmission." }
+    ],
+    "answer": "Vaccination prevents infectious diseases [doc5].",
+    "label": "hallucinated",
+    "hallucination_type": "fake_citation"
+  },
+
+  {
+    "question_id": 87,
+    "question": "Does physical activity improve insulin sensitivity?",
+    "context": [
+      { "doc_id": "doc1", "text": "Physical activity improves insulin sensitivity." },
+      { "doc_id": "doc2", "text": "Exercise enhances glucose uptake." }
+    ],
+    "answer": "Physical activity improves insulin sensitivity [doc6].",
+    "label": "hallucinated",
+    "hallucination_type": "fake_citation"
+  },
+
+  {
+    "question_id": 88,
+    "question": "Does obesity increase diabetes risk?",
+    "context": [
+      { "doc_id": "doc1", "text": "Obesity increases diabetes risk." },
+      { "doc_id": "doc2", "text": "Adiposity contributes to insulin resistance." }
+    ],
+    "answer": "Obesity increases diabetes risk [doc7].",
+    "label": "hallucinated",
+    "hallucination_type": "fake_citation"
+  },
+
+  {
+    "question_id": 89,
+    "question": "Does ibuprofen reduce inflammation?",
+    "context": [
+      { "doc_id": "doc1", "text": "Ibuprofen is a nonsteroidal anti-inflammatory drug." },
+      { "doc_id": "doc2", "text": "NSAIDs reduce inflammation." }
+    ],
+    "answer": "Quantum entanglement explains interactions between subatomic particles.",
+    "label": "hallucinated",
+    "hallucination_type": "off_topic"
+  },
+
+  {
+    "question_id": 90,
+    "question": "Is aspirin used to prevent cardiovascular events?",
+    "context": [
+      { "doc_id": "doc1", "text": "Aspirin reduces cardiovascular events by inhibiting platelet aggregation." },
+      { "doc_id": "doc2", "text": "Antiplatelet therapy reduces thrombotic risk." }
+    ],
+    "answer": "Photosynthesis converts light energy into chemical energy in plants.",
+    "label": "hallucinated",
+    "hallucination_type": "off_topic"
+  }
+]
