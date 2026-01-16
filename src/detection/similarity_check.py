@@ -1,3 +1,17 @@
+"""
+Semantic Similarity signal for hallucination detection.
+
+Uses sentence-level embeddings to measure how semantically grounded a generated
+answer is in the provided context documents. This signal is primarily effective at:
+- Detecting off-topic or unrelated answers
+- Identifying major semantic drift from the context
+- Providing a coarse grounding signal for aggregation
+
+The signal outputs both a raw similarity score and a derived hallucination score
+(1 - similarity) intended for downstream aggregation.
+
+"""
+
 import re
 from typing import List, Dict
 import numpy as np
@@ -33,7 +47,7 @@ class SimilarityChecker:
 
     def check(self, answer: str, context: List[Dict[str, str]]) -> Dict[str, object]:
         if not context:
-            return {"max_similarity": 0.0, "per_context_similarity": []}
+            return {"max_similarity": 0.0,"hallucination_score": 1.0,"is_hallucination": True,"per_context_similarity": []}
 
         clean_answer = self._clean_answer(answer)
         answer_vec = self._embed(clean_answer)
@@ -48,8 +62,14 @@ class SimilarityChecker:
                 {"doc_id": doc["doc_id"], "similarity": similarity}
             )
 
+        max_similarity = max(item["similarity"] for item in per_context)
+        hallucination_score = 1.0 - max_similarity
+        is_hallucination = max_similarity < 0.7
+
         return {
-            "max_similarity": max(item["similarity"] for item in per_context),
+            "max_similarity": max_similarity,
+            "hallucination_score": hallucination_score,
+            "is_hallucination": is_hallucination,
             "per_context_similarity": per_context,
         }
 
