@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     # Judge Threshold (0-1 scale)
     judge_threshold: float = 0.6
     
+    # Citation Threshold 
+    citation_threshold: float = 0.7
+    
     class Config:
         env_file = ".env"
         case_sensitive = False

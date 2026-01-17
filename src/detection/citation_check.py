@@ -1,10 +1,28 @@
+"""
+Citation Verification signal for hallucination detection.
+
+This module implements a lightweight, deterministic citation-based
+faithfulness signal. It verifies that citations referenced in an answer
+exist in the provided context documents and applies simple support-strength
+heuristics (e.g., numeric claim support).
+
+The returned score is a normalized faithfulness score in [0, 1], where:
+- 1.0 indicates fully citation-faithful output
+- 0.0 indicates citation-based hallucination (e.g., fabricated sources)
+
+This signal does NOT perform semantic entailment or factual correctness
+checking; those responsibilities are handled by other signals such as
+LLM-as-Judge.
+"""
+
+
+
 from typing import Dict, List
 import re
 import logging
 from config.settings import settings
 
 logger = logging.getLogger(__name__)
-
 
 class CitationChecker:
     """Verify that citations in answer match retrieved documents
@@ -16,7 +34,7 @@ class CitationChecker:
         Check if citations in answer are valid and plausibly supported.
 
         Returns:
-            Dict with score, passed, and citation details
+            Dict with normalized faithfulness score and citation details
         """
         # Extract doc_id citations from answer (e.g., [doc1], [doc2])
         citations = self._extract_citations(answer)
@@ -25,7 +43,8 @@ class CitationChecker:
             logger.warning("No citations found in answer")
             return {
                 'signal': 'citation_check',
-                'score': 0.5,  # neutral
+                'faithfulness_score': 0.5,
+                'score': 0.5,  # backward compatibility
                 'threshold': settings.citation_threshold,
                 'passed': False,
                 'details': "No citations found in answer",
@@ -33,7 +52,9 @@ class CitationChecker:
                 'valid_citations': [],
                 'invalid_citations': [],
                 'metadata': {
-                    'numeric_claim_present': self._contains_number(answer),
+                    'numeric_claim_present': self._contains_number(
+                        self._strip_citations(answer)
+                    ),
                     'numeric_support_present': False
                 }
             }
@@ -56,12 +77,11 @@ class CitationChecker:
         base_score = len(valid_citations) / len(citations)
 
         # --------------------------------------------------
-        # Numeric-support heuristic (NEW)
+        # Numeric-support heuristic
         # --------------------------------------------------
 
         answer_without_citations = self._strip_citations(answer)
         numeric_claim_present = self._contains_number(answer_without_citations)
-
 
         numeric_support_present = False
         for cid in valid_citations:
@@ -69,23 +89,25 @@ class CitationChecker:
                 numeric_support_present = True
                 break
 
-        score = base_score
+        faithfulness_score = base_score
 
         # Penalize unsupported numeric claims
         if numeric_claim_present and not numeric_support_present:
             logger.info("Numeric claim without numeric support in cited documents")
-            score *= 0.6  # soft penalty
+            faithfulness_score *= 0.6  # soft penalty
 
-        passed = score >= settings.citation_threshold
+        passed = faithfulness_score >= settings.citation_threshold
 
         logger.info(
             f"Citation check: {len(valid_citations)}/{len(citations)} valid "
-            f"(score={score:.2f}, {'PASS' if passed else 'FAIL'})"
+            f"(faithfulness_score={faithfulness_score:.2f}, "
+            f"{'PASS' if passed else 'FAIL'})"
         )
 
         return {
             'signal': 'citation_check',
-            'score': score,
+            'faithfulness_score': faithfulness_score,
+            'score': faithfulness_score,  # backward compatibility
             'threshold': settings.citation_threshold,
             'passed': passed,
             'details': f"Valid citations: {len(valid_citations)}/{len(citations)}",
@@ -97,6 +119,7 @@ class CitationChecker:
                 'numeric_support_present': numeric_support_present
             }
         }
+
     def _strip_citations(self, text: str) -> str:
         """Remove citation markers like [doc1], [doc_2] from text."""
         return re.sub(r'\[[A-Za-z0-9_\-]+\]', '', text)
@@ -114,47 +137,3 @@ class CitationChecker:
 # Singleton instance
 citation_checker = CitationChecker()
 
-
-if __name__ == "__main__":
-    # Simple manual tests for the citation signal
-
-    test_cases = [
-        {
-            "name": "Valid citation, no numeric claim",
-            "answer": "Aspirin reduces cardiovascular events [doc1].",
-            "context": [
-                {"doc_id": "doc1", "text": "Aspirin reduces cardiovascular events in high-risk patients."},
-                {"doc_id": "doc2", "text": "Aspirin inhibits platelet aggregation."}
-            ]
-        },
-        {
-            "name": "Fake citation",
-            "answer": "Aspirin reduces cardiovascular events [doc3].",
-            "context": [
-                {"doc_id": "doc1", "text": "Aspirin reduces cardiovascular events in high-risk patients."}
-            ]
-        },
-        {
-            "name": "Fabricated numeric statistic",
-            "answer": "Aspirin reduces cardiovascular mortality by 65% [doc1].",
-            "context": [
-                {"doc_id": "doc1", "text": "Aspirin reduces cardiovascular events in high-risk patients."},
-                {"doc_id": "doc2", "text": "Aspirin inhibits platelet aggregation."}
-            ]
-        },
-        
-        {
-            "name": "Numeric claim with numeric support",
-            "answer": "Aspirin reduces cardiovascular events by 20% [doc1].",
-            "context": [
-                {"doc_id": "doc1", "text": "Clinical trials show aspirin reduces cardiovascular events by 20%."}
-            ]
-        }
-    ]
-
-    for test in test_cases:
-        print("\n" + "=" * 60)
-        print(f"TEST: {test['name']}")
-        result = citation_checker.check(test["answer"], test["context"])
-        for key, value in result.items():
-            print(f"{key}: {value}")
