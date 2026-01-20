@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     ollama_host: str = "http://localhost:11434"
     
     # Judge Threshold (0-1 scale)
-    judge_threshold: float = 0.6
+    judge_threshold: float = 0.7
     
     # Citation Threshold 
     citation_threshold: float = 0.7
