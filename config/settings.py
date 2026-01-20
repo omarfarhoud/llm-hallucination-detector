@@ -16,6 +16,14 @@ class Settings(BaseSettings):
     # Citation Threshold 
     citation_threshold: float = 0.7
     
+    # -----------------------------
+    # Aggregation configuration
+    # -----------------------------
+    similarity_weight: float = 0.25
+    judge_weight: float = 0.60
+    citation_weight: float = 0.15
+    aggregation_threshold: float = 0.7
+    
     class Config:
         env_file = ".env"
         case_sensitive = False
