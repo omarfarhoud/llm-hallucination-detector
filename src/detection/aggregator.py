@@ -1,8 +1,8 @@
 """
 Aggregator for multi-signal hallucination detection.
 
-Combines multiple hallucination signals using a weighted average over
-normalized hallucination scores.
+Combines multiple hallucination signals using a confidence-aware,
+gated score aggregation strategy.
 
 Signals:
 - Semantic Similarity (off-topic detection)
@@ -10,12 +10,13 @@ Signals:
 - Citation Verification (structural faithfulness)
 
 Design principles:
-- Score-level aggregation (not voting or rules)
-- Fixed, interpretable weights
-- Single global threshold
+- Score-level aggregation (not rules or voting)
+- Confidence-aware gating
+- Fixed, interpretable thresholds
+- Single global hallucination threshold
 """
 
-from typing import Dict
+from typing import Dict, List
 import logging
 
 from config.settings import settings
@@ -25,8 +26,14 @@ logger = logging.getLogger(__name__)
 
 class HallucinationAggregator:
     """
-    Aggregates hallucination signals into a final hallucination score.
+    Aggregates hallucination signals into a final hallucination score
+    using confidence-aware gating.
     """
+
+    # Gating thresholds
+    SIMILARITY_GATE = 0.8
+    CITATION_GATE = 0.8
+    JUDGE_DOMINANCE_GATE = 0.7
 
     def __init__(
         self,
@@ -54,6 +61,11 @@ class HallucinationAggregator:
             f"{self.weights}, threshold={self.threshold}"
         )
 
+    @staticmethod
+    def _clamp(x: float) -> float:
+        """Clamp a score to [0, 1]."""
+        return max(0.0, min(1.0, x))
+
     def aggregate(
         self,
         similarity_result: Dict,
@@ -61,7 +73,7 @@ class HallucinationAggregator:
         citation_result: Dict,
     ) -> Dict:
         """
-        Aggregate hallucination signals.
+        Aggregate hallucination signals using confidence-aware gating.
 
         Args:
             similarity_result: Output from SimilarityChecker
@@ -69,43 +81,89 @@ class HallucinationAggregator:
             citation_result: Output from CitationChecker
 
         Returns:
-            Dict containing final hallucination score and decision
+            Dict containing final hallucination score, decision,
+            and aggregation metadata.
         """
 
         # -----------------------------
-        # Extract hallucination scores
+        # Extract & normalize scores
         # -----------------------------
 
-        # Semantic similarity already returns hallucination_score
-        similarity_h = float(similarity_result.get("hallucination_score", 1.0))
+        # Semantic similarity already returns hallucination score
+        similarity_h = self._clamp(
+            float(similarity_result.get("hallucination_score", 1.0))
+        )
 
         # LLM judge returns faithfulness score → invert
         judge_score = float(judge_result.get("score", 0.5))
-        judge_h = 1.0 - judge_score
+        judge_h = self._clamp(1.0 - judge_score)
 
         # Citation checker returns faithfulness score → invert
         citation_score = float(citation_result.get("faithfulness_score", 0.5))
-        citation_h = 1.0 - citation_score
+        citation_h = self._clamp(1.0 - citation_score)
 
         # -----------------------------
-        # Weighted aggregation
+        # Confidence-aware aggregation
         # -----------------------------
 
-        final_hallucination_score = (
-            self.weights["semantic_similarity"] * similarity_h
-            + self.weights["llm_judge"] * judge_h
-            + self.weights["citation_check"] * citation_h
-        )
+        used_signals: List[str]
+        strategy: str
 
+        # Regime B: Judge-dominant (high-confidence semantic hallucination)
+        if judge_h >= self.JUDGE_DOMINANCE_GATE:
+            final_hallucination_score = judge_h
+            used_signals = ["llm_judge"]
+            strategy = "judge_dominant"
+
+            logger.info(
+                f"Judge-dominant aggregation applied (judge_h={judge_h:.3f})"
+            )
+
+        # Regime A: Structural gate (skip judge)
+        elif (
+            similarity_h >= self.SIMILARITY_GATE
+            or citation_h >= self.CITATION_GATE
+        ):
+            # Renormalize similarity + citation weights
+            final_hallucination_score = max(similarity_h, citation_h)
+
+
+            used_signals = ["semantic_similarity", "citation_check"]
+            strategy = "structural_gate"
+
+            logger.info(
+                "Structural-gated aggregation applied "
+                f"(sim_h={similarity_h:.3f}, cite_h={citation_h:.3f})"
+            )
+
+        # Regime C: Full weighted aggregation
+        else:
+            final_hallucination_score = (
+                self.weights["semantic_similarity"] * similarity_h
+                + self.weights["llm_judge"] * judge_h
+                + self.weights["citation_check"] * citation_h
+            )
+
+            used_signals = [
+                "semantic_similarity",
+                "llm_judge",
+                "citation_check",
+            ]
+            strategy = "full_weighted"
+
+        final_hallucination_score = self._clamp(final_hallucination_score)
+
+        # Conservative decision boundary (precision-biased)
         is_hallucination = final_hallucination_score >= self.threshold
 
         logger.info(
             "Aggregation result: "
-            f"similarity_h={similarity_h:.3f}, "
+            f"sim_h={similarity_h:.3f}, "
             f"judge_h={judge_h:.3f}, "
-            f"citation_h={citation_h:.3f} → "
+            f"cite_h={citation_h:.3f} → "
             f"final={final_hallucination_score:.3f} "
-            f"({'HALLUCINATION' if is_hallucination else 'FAITHFUL'})"
+            f"({'HALLUCINATION' if is_hallucination else 'FAITHFUL'}), "
+            f"strategy={strategy}"
         )
 
         # -----------------------------
@@ -117,6 +175,15 @@ class HallucinationAggregator:
             "is_hallucination": is_hallucination,
             "threshold": self.threshold,
             "weights": self.weights,
+            "aggregation_mode": {
+                "strategy": strategy,
+                "used_signals": used_signals,
+            },
+            "signal_scores": {
+                "semantic_similarity_h": similarity_h,
+                "llm_judge_h": judge_h,
+                "citation_check_h": citation_h,
+            },
             "signals": {
                 "semantic_similarity": {
                     "hallucination_score": similarity_h,
@@ -141,6 +208,7 @@ aggregator = HallucinationAggregator(
     citation_weight=settings.citation_weight,
     threshold=settings.aggregation_threshold,
 )
+
 
 if __name__ == "__main__":
     """
@@ -222,6 +290,7 @@ if __name__ == "__main__":
             print("-" * 80)
             print(f"Question : {question}")
             print(f"Answer   : {answer}")
+            print(f"Context  : {combined_context}")
             print(f"Ground_Truth     : {item['label']}")
             print(f"Predicted: {predicted}")
             print(
