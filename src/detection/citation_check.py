@@ -37,14 +37,14 @@ class CitationChecker:
             Dict with normalized faithfulness score and citation details
         """
         # Extract doc_id citations from answer (e.g., [doc1], [doc2])
-        citations = self._extract_citations(answer)
+        citations = [int(c) for c in self._extract_citations(answer)]
 
         if not citations:
             logger.warning("No citations found in answer")
             return {
-                'signal': 'citation_check',
-                'faithfulness_score': 0.5,
-                'score': 0.5,  # backward compatibility
+               'signal': 'citation_check',
+                'faithfulness_score': 0.0,
+                'score': 0.0,
                 'threshold': settings.citation_threshold,
                 'passed': False,
                 'details': "No citations found in answer",
@@ -93,8 +93,9 @@ class CitationChecker:
 
         # Penalize unsupported numeric claims
         if numeric_claim_present and not numeric_support_present:
-            logger.info("Numeric claim without numeric support in cited documents")
-            faithfulness_score *= 0.6  # soft penalty
+            logger.info("Numeric claim without numeric support — strong penalty applied")
+            faithfulness_score = 0.0
+
 
         passed = faithfulness_score >= settings.citation_threshold
 
