@@ -1,17 +1,30 @@
 services:
   api:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
-    image: hallucination-detector:latest
-    container_name: hallucination-detector-api
-    ports:
-      - "8000:8000"
+    image: hallucination-detector-api:latest
+    container_name: hallucination-api
     environment:
-      # Overrides settings.py default to talk to the Windows host
       - OLLAMA_HOST=http://host.docker.internal:11434
-      # You can add others here only if you want to override your code defaults
-      - LOG_LEVEL=INFO
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    # Port 8000 is still available for direct curl/testing
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: dashboard/Dockerfile
+    image: hallucination-detector-ui:latest
+    container_name: hallucination-dashboard
+    ports:
+      - "8501:8501"
+    environment:
+      # This points Streamlit to the internal Docker name of the API
+      - BACKEND_URL=http://api:8000/detect
+    depends_on:
+      - api
     restart: unless-stopped

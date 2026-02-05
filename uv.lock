@@ -1217,23 +1217,27 @@ name = "llm-hallucination-detector"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "fastapi" },
-    { name = "litellm" },
     { name = "numpy" },
-    { name = "ollama" },
     { name = "pandas" },
-    { name = "plotly" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "python-dotenv" },
-    { name = "python-multipart" },
-    { name = "sentence-transformers" },
-    { name = "streamlit" },
-    { name = "tqdm" },
-    { name = "uvicorn", extra = ["standard"] },
 ]
 
 [package.optional-dependencies]
+api = [
+    { name = "fastapi" },
+    { name = "litellm" },
+    { name = "ollama" },
+    { name = "python-multipart" },
+    { name = "sentence-transformers" },
+    { name = "tqdm" },
+    { name = "uvicorn", extra = ["standard"] },
+]
+dashboard = [
+    { name = "plotly" },
+    { name = "streamlit" },
+]
 dev = [
     { name = "httpx" },
     { name = "pytest" },
@@ -1253,27 +1257,27 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "fastapi", specifier = ">=0.109.0" },
+    { name = "fastapi", marker = "extra == 'api'", specifier = ">=0.109.0" },
     { name = "httpx", marker = "extra == 'dev'", specifier = ">=0.26.0" },
-    { name = "litellm", specifier = ">=1.17.0" },
+    { name = "litellm", marker = "extra == 'api'", specifier = ">=1.17.0" },
     { name = "numpy", specifier = ">=1.26.3" },
-    { name = "ollama", specifier = ">=0.6.1" },
+    { name = "ollama", marker = "extra == 'api'", specifier = ">=0.6.1" },
     { name = "pandas", specifier = ">=2.1.4" },
-    { name = "plotly", specifier = ">=5.18.0" },
+    { name = "plotly", marker = "extra == 'dashboard'", specifier = ">=5.18.0" },
     { name = "pydantic", specifier = ">=2.5.0" },
     { name = "pydantic-settings", specifier = ">=2.1.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.4.4" },
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.1.0" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
-    { name = "python-multipart", specifier = ">=0.0.6" },
+    { name = "python-multipart", marker = "extra == 'api'", specifier = ">=0.0.6" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.9" },
-    { name = "sentence-transformers", specifier = ">=2.3.1" },
-    { name = "streamlit", specifier = ">=1.30.0" },
-    { name = "tqdm", specifier = ">=4.66.1" },
-    { name = "uvicorn", extras = ["standard"], specifier = ">=0.27.0" },
+    { name = "sentence-transformers", marker = "extra == 'api'", specifier = ">=2.3.1" },
+    { name = "streamlit", marker = "extra == 'dashboard'", specifier = ">=1.30.0" },
+    { name = "tqdm", marker = "extra == 'api'", specifier = ">=4.66.1" },
+    { name = "uvicorn", extras = ["standard"], marker = "extra == 'api'", specifier = ">=0.27.0" },
 ]
-provides-extras = ["dev"]
+provides-extras = ["api", "dashboard", "dev"]
 
 [package.metadata.requires-dev]
 dev = [
