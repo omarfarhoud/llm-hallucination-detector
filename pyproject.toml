@@ -6,29 +6,32 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
 
+# Core shared dependencies
 dependencies = [
-    # Core API
-    "fastapi>=0.109.0",
-    "uvicorn[standard]>=0.27.0",
     "pydantic>=2.5.0",
     "pydantic-settings>=2.1.0",
     "python-dotenv>=1.0.0",
-    # LLM & Embeddings
-    "litellm>=1.17.0",
-    "sentence-transformers>=2.3.1",
-    # Data processing
     "pandas>=2.1.4",
     "numpy>=1.26.3",
-    # Dashboard
-    "streamlit>=1.30.0",
-    "plotly>=5.18.0",
-    # Utilities
-    "python-multipart>=0.0.6",
-    "tqdm>=4.66.1",
-    "ollama>=0.6.1",
 ]
 
 [project.optional-dependencies]
+# Dependencies specifically for the FastAPI backend and ML logic
+api = [
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "litellm>=1.17.0",
+    "sentence-transformers>=2.3.1",
+    "ollama>=0.6.1",
+    "python-multipart>=0.0.6",
+    "tqdm>=4.66.1",
+]
+# Dependencies specifically for the Streamlit UI
+dashboard = [
+    "streamlit>=1.30.0",
+    "plotly>=5.18.0",
+]
+# Standard development tools
 dev = [
     "pytest>=7.4.4",
     "pytest-asyncio>=0.23.0",
@@ -62,6 +65,7 @@ source = ["src"]
 omit = ["tests/*", "**/__init__.py"]
 
 [dependency-groups]
+# Extra visualization/analysis tools used in dev
 dev = [
     "matplotlib>=3.10.8",
     "matplotlib-inline>=0.2.1",

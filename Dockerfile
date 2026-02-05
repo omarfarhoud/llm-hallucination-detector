@@ -12,10 +12,9 @@ WORKDIR /app
 # Copy dependency files AND README (needed for build)
 COPY pyproject.toml uv.lock README.md ./
 
-# Install dependencies with an increased timeout and cache mount
-# This prevents timeouts on large packages like torch/cuda
+# ✅ UPDATE: Added --extra api and --no-install-project
 RUN --mount=type=cache,target=/root/.cache/uv \
-    UV_HTTP_TIMEOUT=600 uv sync --frozen --no-dev
+    UV_HTTP_TIMEOUT=600 uv sync --frozen --no-dev --extra api --no-install-project
 
 # ============================================================================
 # Stage 2: Runtime - Minimal production image
@@ -30,7 +29,6 @@ RUN useradd -m -u 1000 appuser && \
 WORKDIR /app
 
 # Set environment variables
-# PYTHONPATH=/app ensures Python can see the 'api' folder as a package
 ENV PATH="/app/.venv/bin:$PATH" \
     PYTHONPATH="/app" \
     PYTHONUNBUFFERED=1 \
@@ -48,12 +46,12 @@ USER appuser
 # Expose port
 EXPOSE 8000
 
-# Health check (Ensure api/main.py has a @app.get("/health") route)
+# Health check
 HEALTHCHECK --interval=30s \
     --timeout=5s \
     --start-period=10s \
     --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"
 
-# Corrected module path: api.main
+# Command to run the backend
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
