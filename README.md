@@ -262,7 +262,7 @@ docker compose up --build
 - **API**: http://localhost:8000 (FastAPI backend)
 - **Dashboard**: http://localhost:8501 (Streamlit UI)
 
-**Note**: The initial build downloads ~3GB of dependencies and takes 15-30 minutes. Subsequent builds use layer caching and are much faster (30s-2min for dependency changes, 5-10s for code changes).
+**Note**: The first build downloads the CPU-only PyTorch wheel and ML dependencies and pre-bakes the embedding model into the image — typically a few minutes, producing a ~2 GB image (no multi-GB CUDA download). Subsequent builds use layer caching and are much faster (30s-2min for dependency changes, 5-10s for code changes).
 
 ### Option 2: Docker (API Only)
 
@@ -618,16 +618,16 @@ docker run -p 8000:8000 \
 
 ### Build Takes Too Long
 
-**Expected**: Initial build downloads ~3GB of dependencies (PyTorch, CUDA libraries, transformers) and takes 15-30 minutes.
+**Expected**: The first build downloads the CPU-only PyTorch wheel, transformers, and the embedding model — typically a few minutes, producing a ~2 GB image. (Earlier versions pulled the full CUDA stack and were ~12 GB / 15-30 min; `torch` is now pinned to the CPU wheel on Linux.)
 
 **Future builds are faster**:
 - Code changes only: 5-10 seconds
 - Dependency changes: 30 seconds - 2 minutes (uses layer caching)
 
-**To optimize** (future work):
-- Remove unused CUDA/GPU dependencies (your container doesn't need them since Ollama runs on host)
-- Use smaller base images
-- Multi-stage builds to exclude build tools
+**Already optimized**:
+- `torch` pinned to the CPU-only wheel on Linux, dropping the ~6-8 GB CUDA stack the container never uses (embedding runs on CPU; Ollama runs on the host)
+- Embedding model pre-baked into the image, so there is no HuggingFace download on cold start
+- Multi-stage build keeps build tooling out of the runtime image
 
 ### Port Already in Use
 
@@ -643,28 +643,26 @@ docker run -p 8001:8000 hallucination-detector:latest
 
 ### Model Download Issues
 
-**Symptom**: `SentenceTransformer model not found`
+**Symptom**: `SentenceTransformer model not found` — when running **outside Docker** (local dev).
+
+> The Docker image already bundles the `all-MiniLM-L6-v2` model and runs with `HF_HUB_OFFLINE=1`, so this only affects local, non-Docker runs.
 
 **Solution**:
 ```bash
-# Pre-download model locally
+# Pre-download the model into your local HuggingFace cache
 python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
-
-# Or specify cache directory
-docker run -v ~/.cache/huggingface:/root/.cache/huggingface ...
 ```
 
 ### Memory Issues
 
-**Symptom**: Docker build fails with out-of-memory error
+**Symptom**: Docker build or runtime runs low on memory.
+
+> The slim CPU image is far lighter than the earlier CUDA builds, so this is rarely an issue now. If you still hit it:
 
 **Solution**:
 ```bash
 # Increase Docker Desktop memory allocation
-# Docker Desktop → Settings → Resources → Memory → 8GB+
-
-# Or build with limited workers
-docker build --memory=8g -t hallucination-detector:latest .
+# Docker Desktop → Settings → Resources → Memory → 4GB+
 ```
 
 ---
